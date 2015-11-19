@@ -80,7 +80,7 @@ function Item (name) {
  * @property {method} getPack              Returns private variable `pack`.
  * @property {method} getMaxHealth         Returns private variable `maxHealth`.
  */
-var Player = new Player('name', health, strength, speed);
+var player = new Player('name', 100, 100, 50);
 
 function Player (name, health, strength, speed) {
   this.name = name; 
@@ -89,9 +89,16 @@ function Player (name, health, strength, speed) {
   this.speed = speed;
   this.isAlive = true;
   this.equipped = false;
-  
-
+  this.getPack = function(){
+    var pack = [];
+    return pack;
+  };
+  this.getMaxHealth = function(){
+    return health;
+  }; 
+  this.takeItem = function(){};
 }
+
 
 /**
  * Player Class Method => checkPack()
@@ -104,8 +111,9 @@ function Player (name, health, strength, speed) {
  *
  * @name checkPack
  */
-
-
+Player.prototype.checkPack = function(){
+  console.log(this.getPack());
+};
 /**
  * Player Class Method => takeItem(item)
  * -----------------------------
@@ -123,7 +131,14 @@ function Player (name, health, strength, speed) {
  * @param {Item/Weapon/Food} item   The item to take.
  * @return {boolean} true/false     Whether player was able to store item in pack.
  */
-
+Player.prototype.takeItem = function(item){
+    if (this.pack.length < 3){
+      console.log(this.name + this.item);
+      return false;
+    }else {
+      console.log("the pack is full so the item could not be stored.");
+    }
+};
 
 /**
  * Player Class Method => discardItem(item)
@@ -237,7 +252,16 @@ function Player (name, health, strength, speed) {
  * @property {number} speed
  * @property {boolean} isAlive      Default value should be `true`.
  */
+var zombie = new Zombie(health, strength, speed);
 
+function Zombie (health, strength, speed){
+  this.name = Zombie;
+  this.health = health;
+  this.strength = strength;
+  this.speed = speed;
+  this.isAlive = true;
+
+}
 
 /**
  * Class => FastZombie(health, strength, speed)
